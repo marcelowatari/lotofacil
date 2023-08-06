@@ -1,18 +1,28 @@
 package tech.ada.java.lotofacil;
 
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import tech.ada.java.lotofacil.repository.LotofacilRepository;
+import tech.ada.java.lotofacil.resultadosanteriores.CarregarResultadosAnteriores;
+import tech.ada.java.lotofacil.resultadosanteriores.dto.ConcursoResultadoCSV;
+import tech.ada.java.lotofacil.service.ResultadosAnterioresService;
 
 @SpringBootApplication
 public class LotofacilApplication implements CommandLineRunner {
 
-	private final LotofacilRepository repository;
+	private final ResultadosAnterioresService resultadosAnterioresService;
+
+	private final String filePathResultadosAnteriores = "lotofacil-resultados-anteriores.csv";
 	
-	public LotofacilApplication( LotofacilRepository repository) {
-		this.repository = repository;
+	@Autowired
+	public LotofacilApplication( 
+			//LotofacilRepository repository,
+			ResultadosAnterioresService resultadosAnterioresService) {
+		this.resultadosAnterioresService = resultadosAnterioresService;
 	}
 	
 	public static void main(String[] args) {
@@ -21,8 +31,12 @@ public class LotofacilApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		// TODO Auto-generated method stub
 		
+		Map<Integer, ConcursoResultadoCSV> mapResultadoConcursosAnteriores = CarregarResultadosAnteriores.carregar(filePathResultadosAnteriores);
+		
+		System.out.println("teste");
+		
+		//resultadosAnterioresService.save( mapResultadoConcursosAnteriores );
 	}
 
 }
