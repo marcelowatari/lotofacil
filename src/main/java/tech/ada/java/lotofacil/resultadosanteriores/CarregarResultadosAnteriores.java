@@ -23,7 +23,7 @@ public class CarregarResultadosAnteriores {
 	
 	private static final Logger logger = LoggerFactory.getLogger(CarregarResultadosAnteriores.class);
 
-	public static Map<Integer, ConcursoResultadoCSV> carregar(String filePath) {
+	public static List<BeanUmResultadoCSV> carregar(String filePath) {
 
 		System.out.println("Carregando resultados anteriores da lotofacil...");
 		
@@ -36,14 +36,14 @@ public class CarregarResultadosAnteriores {
 		}
 
 		
-		Map<Integer, ConcursoResultadoCSV> mapResultadoJogosAnteriores = null;
+		List<BeanUmResultadoCSV> listBeanUmResultadoCSV = null;
 		
 		try (Reader reader = Files.newBufferedReader(path)) {
 			CsvToBean<BeanUmResultadoCSV> cb = new CsvToBeanBuilder<BeanUmResultadoCSV>(reader)
 					.withSeparator(';')
 					.withType(BeanUmResultadoCSV.class).build();
 			
-			List<BeanUmResultadoCSV> parse = cb.parse();
+			listBeanUmResultadoCSV = cb.parse();
 			
 			System.out.println("Dados carregados com sucesso");
 			
@@ -56,7 +56,7 @@ public class CarregarResultadosAnteriores {
 		
 		System.out.println("Dados carregados com sucesso");
 
-		return mapResultadoJogosAnteriores;
+		return listBeanUmResultadoCSV;
 	}
 
 }

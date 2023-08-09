@@ -1,6 +1,5 @@
 package tech.ada.java.lotofacil.resultadosanteriores.dto;
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.HashSet;
 
 public class ConcursoResultadoCSV {

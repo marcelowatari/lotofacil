@@ -1,27 +1,34 @@
 package tech.ada.java.lotofacil.service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+import tech.ada.java.lotofacil.model.LotofacilResultadosAnteriores;
 import tech.ada.java.lotofacil.repository.ResultadosAnterioresRepository;
-import tech.ada.java.lotofacil.resultadosanteriores.dto.ConcursoResultadoCSV;
+import tech.ada.java.lotofacil.resultadosanteriores.dto.BeanUmResultadoCSV;
 
 @Service
 public class ResultadosAnterioresService {
 	
-	private final ResultadosAnterioresRepository repository = null;
+	private final ResultadosAnterioresRepository repository;
 
 	private static final int QUADRA = 4;
 	private static final int QUINA = 5;
 	private static final int MEGA = 6;
-//	private final Map<Integer, ConcursoResultado> mapResultadoJogosAnteriores = null;
+	
+	public ResultadosAnterioresService(ResultadosAnterioresRepository repository) {
+		this.repository = repository;
+	}
 
-	public void save( Map<Integer, ConcursoResultadoCSV> mapResultadoJogosAnteriores ) {
-		List<ConcursoResultadoCSV> x = new ArrayList( mapResultadoJogosAnteriores.values() );
-		//this.repository.saveAndFlush(x);
+	public void save( List<BeanUmResultadoCSV> listBeanUmResultadoCSV ) {
+		
+		List<LotofacilResultadosAnteriores> list = listBeanUmResultadoCSV
+				.stream()
+				.map( umResultado -> new LotofacilResultadosAnteriores( umResultado ) )
+				.toList();
+		
+		this.repository.saveAllAndFlush(list);
 	}
 
 //	public void checarJogoAlgumaVezSorteado(Map<Integer, MeuJogoNumerosEscolhidos> meusJogos) {
