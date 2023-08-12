@@ -2,6 +2,8 @@ package tech.ada.java.lotofacil;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,6 +15,8 @@ import tech.ada.java.lotofacil.service.ResultadosAnterioresService;
 @SpringBootApplication
 public class LotofacilApplication implements CommandLineRunner {
 
+	private static final Logger logger = LoggerFactory.getLogger(LotofacilApplication.class);
+	
 	private final ResultadosAnterioresService resultadosAnterioresService;
 
 	private final String filePathResultadosAnteriores = "lotofacil-resultados-anteriores-v2.csv";
@@ -31,9 +35,9 @@ public class LotofacilApplication implements CommandLineRunner {
 		
 		List<BeanUmResultadoCSV> listBeanUmResultadoCSV = CarregarResultadosAnteriores.carregar(filePathResultadosAnteriores);
 		
-		System.out.println("teste");
-		
 		resultadosAnterioresService.save( listBeanUmResultadoCSV );
+		logger.debug("Resultados anteriores da lotofacil foi salvo no banco de dados!!!");
+		
 	}
 
 }
