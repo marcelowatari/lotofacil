@@ -29,7 +29,7 @@ public class LotofacilService {
 				.collect(Collectors.toList());
 	}
 	
-	public List<JogoEscolhidoCheckSorteioAnteriores> checarSeJogoFoiSorteado( HashSet<Integer> numerosEscolhidosNoMeuJogo ) {
+	public List<JogoEscolhidoCheckSorteioAnteriores> checarSeJogoFoiSorteado( Set<Integer> numerosEscolhidosNoMeuJogo ) {
 		
 		List<JogoEscolhidoCheckSorteioAnteriores> listaDeSorteiosGanhos = new ArrayList<>();
 		List<LotofacilResultadosAnterioresDTO> listaResultadosAnteriores = this.findAll();
