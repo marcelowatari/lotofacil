@@ -1,0 +1,140 @@
+{
+	"info": {
+		"_postman_id": "7d95a1d4-46c8-42c0-823a-36513eff0d61",
+		"name": "lotofacil",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "consultar resultados anteriores",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "12345",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "marcelo@gmail.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/lotofacil/v1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"lotofacil",
+						"v1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "consultar se seu jogo foi sorteado alguma vez",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "12345",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "marcelo@gmail.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"numerosEscolhidos\" : \"1;2;3;4;5;6;7;8;9;10;11;12;13;14;15\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/lotofacil/v1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"lotofacil",
+						"v1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cadastrar usuario",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"usuario4@email.com\",\r\n    \"password\": \"12345\",\r\n    \"nome\": \"Usuario 4\",\r\n    \"idade\": 17\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/lotofacil/usuario",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"lotofacil",
+						"usuario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "consultar todos usuarios",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/lotofacil/usuario",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"lotofacil",
+						"usuario"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
